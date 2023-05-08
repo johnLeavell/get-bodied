@@ -1,0 +1,131 @@
+<div>
+  <div>
+    <h1>
+      Workout exercise #<%= @the_workout_exercise.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/workout_exercises">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_workout_exercise/<%= @the_workout_exercise.id %>">
+          Delete workout exercise
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Exercise
+      </dt>
+      <dd>
+        <%= @the_workout_exercise.exercise_id %>
+      </dd>
+
+      <dt>
+        Workout
+      </dt>
+      <dd>
+        <%= @the_workout_exercise.workout_id %>
+      </dd>
+
+      <dt>
+        Reps
+      </dt>
+      <dd>
+        <%= @the_workout_exercise.reps %>
+      </dd>
+
+      <dt>
+        Weight
+      </dt>
+      <dd>
+        <%= @the_workout_exercise.weight %>
+      </dd>
+
+      <dt>
+        Sets
+      </dt>
+      <dd>
+        <%= @the_workout_exercise.sets %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_workout_exercise.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_workout_exercise.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit workout exercise
+    </h2>
+
+    <form action="/modify_workout_exercise/<%= @the_workout_exercise.id %>"  method="post" >
+      <div>
+        <label for="exercise_id_box">
+          Exercise
+        </label>
+
+        <input type="text" id="exercise_id_box" name="query_exercise_id" value="<%= @the_workout_exercise.exercise_id %>">
+      </div>
+
+      <div>
+        <label for="workout_id_box">
+          Workout
+        </label>
+
+        <input type="text" id="workout_id_box" name="query_workout_id" value="<%= @the_workout_exercise.workout_id %>">
+      </div>
+
+      <div>
+        <label for="reps_box">
+          Reps
+        </label>
+
+        <input type="text" id="reps_box" name="query_reps" value="<%= @the_workout_exercise.reps %>">
+      </div>
+
+      <div>
+        <label for="weight_box">
+          Weight
+        </label>
+
+        <input type="text" id="weight_box" name="query_weight" value="<%= @the_workout_exercise.weight %>">
+      </div>
+
+      <div>
+        <label for="sets_box">
+          Sets
+        </label>
+
+        <input type="text" id="sets_box" name="query_sets" value="<%= @the_workout_exercise.sets %>">
+      </div>
+
+      <button>
+        Update workout exercise
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

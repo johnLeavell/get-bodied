@@ -1,0 +1,150 @@
+<div>
+  <div>
+    <h1>
+      List of all workout exercises
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new workout exercise
+    </h2>
+
+    <form action="/insert_workout_exercise" method="post">
+      <div>
+        <label for="exercise_id_box">
+          Exercise
+        </label>
+
+        <input type="text" id="exercise_id_box" name="query_exercise_id">
+      </div>
+
+      <div>
+        <label for="workout_id_box">
+          Workout
+        </label>
+
+        <input type="text" id="workout_id_box" name="query_workout_id">
+      </div>
+
+      <div>
+        <label for="reps_box">
+          Reps
+        </label>
+
+        <input type="text" id="reps_box" name="query_reps">
+      </div>
+
+      <div>
+        <label for="weight_box">
+          Weight
+        </label>
+
+        <input type="text" id="weight_box" name="query_weight">
+      </div>
+
+      <div>
+        <label for="sets_box">
+          Sets
+        </label>
+
+        <input type="text" id="sets_box" name="query_sets">
+      </div>
+
+      <button>
+        Create workout exercise
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Exercise
+        </th>
+
+        <th>
+          Workout
+        </th>
+
+        <th>
+          Reps
+        </th>
+
+        <th>
+          Weight
+        </th>
+
+        <th>
+          Sets
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_workout_exercises.each do |a_workout_exercise| %>
+      <tr>
+        <td>
+          <%= a_workout_exercise.id %>
+        </td>
+
+        <td>
+          <%= a_workout_exercise.exercise_id %>
+        </td>
+
+        <td>
+          <%= a_workout_exercise.workout_id %>
+        </td>
+
+        <td>
+          <%= a_workout_exercise.reps %>
+        </td>
+
+        <td>
+          <%= a_workout_exercise.weight %>
+        </td>
+
+        <td>
+          <%= a_workout_exercise.sets %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_workout_exercise.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_workout_exercise.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/workout_exercises/<%= a_workout_exercise.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
