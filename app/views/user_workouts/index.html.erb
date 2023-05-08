@@ -1,0 +1,134 @@
+<div>
+  <div>
+    <h1>
+      List of all user workouts
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new user workout
+    </h2>
+
+    <form action="/insert_user_workout" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="workout_id_box">
+          Workout
+        </label>
+
+        <input type="text" id="workout_id_box" name="query_workout_id">
+      </div>
+
+      <div>
+        <label for="completed_at_box">
+          Completed at
+        </label>
+
+        <input type="text" id="completed_at_box" name="query_completed_at">
+      </div>
+
+      <div>
+        <label for="started_at_box">
+          Started at
+        </label>
+
+        <input type="text" id="started_at_box" name="query_started_at">
+      </div>
+
+      <button>
+        Create user workout
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Workout
+        </th>
+
+        <th>
+          Completed at
+        </th>
+
+        <th>
+          Started at
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_user_workouts.each do |a_user_workout| %>
+      <tr>
+        <td>
+          <%= a_user_workout.id %>
+        </td>
+
+        <td>
+          <%= a_user_workout.user_id %>
+        </td>
+
+        <td>
+          <%= a_user_workout.workout_id %>
+        </td>
+
+        <td>
+          <%= a_user_workout.completed_at %>
+        </td>
+
+        <td>
+          <%= a_user_workout.started_at %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_user_workout.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_user_workout.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/user_workouts/<%= a_user_workout.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

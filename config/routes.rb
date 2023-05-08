@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the User workout resource:
+
+  # CREATE
+  post("/insert_user_workout", { :controller => "user_workouts", :action => "create" })
+          
+  # READ
+  get("/user_workouts", { :controller => "user_workouts", :action => "index" })
+  
+  get("/user_workouts/:path_id", { :controller => "user_workouts", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_user_workout/:path_id", { :controller => "user_workouts", :action => "update" })
+  
+  # DELETE
+  get("/delete_user_workout/:path_id", { :controller => "user_workouts", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Workout resource:
 
   # CREATE

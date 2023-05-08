@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      User workout #<%= @the_user_workout.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/user_workouts">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_user_workout/<%= @the_user_workout.id %>">
+          Delete user workout
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_user_workout.user_id %>
+      </dd>
+
+      <dt>
+        Workout
+      </dt>
+      <dd>
+        <%= @the_user_workout.workout_id %>
+      </dd>
+
+      <dt>
+        Completed at
+      </dt>
+      <dd>
+        <%= @the_user_workout.completed_at %>
+      </dd>
+
+      <dt>
+        Started at
+      </dt>
+      <dd>
+        <%= @the_user_workout.started_at %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_user_workout.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_user_workout.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit user workout
+    </h2>
+
+    <form action="/modify_user_workout/<%= @the_user_workout.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_user_workout.user_id %>">
+      </div>
+
+      <div>
+        <label for="workout_id_box">
+          Workout
+        </label>
+
+        <input type="text" id="workout_id_box" name="query_workout_id" value="<%= @the_user_workout.workout_id %>">
+      </div>
+
+      <div>
+        <label for="completed_at_box">
+          Completed at
+        </label>
+
+        <input type="text" id="completed_at_box" name="query_completed_at" value="<%= @the_user_workout.completed_at %>">
+      </div>
+
+      <div>
+        <label for="started_at_box">
+          Started at
+        </label>
+
+        <input type="text" id="started_at_box" name="query_started_at" value="<%= @the_user_workout.started_at %>">
+      </div>
+
+      <button>
+        Update user workout
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
