@@ -1,0 +1,71 @@
+<div>
+  <div>
+    <h1>
+      Workout #<%= @the_workout.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/workouts">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_workout/<%= @the_workout.id %>">
+          Delete workout
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_workout.name %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_workout.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_workout.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit workout
+    </h2>
+
+    <form action="/modify_workout/<%= @the_workout.id %>"  method="post" >
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_workout.name %>">
+      </div>
+
+      <button>
+        Update workout
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
