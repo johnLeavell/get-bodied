@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 
   # Routes for the Ai message resource:
-
+  get("/", { controller: "welcome", action: "index" })
   # CREATE
   post("/insert_ai_message", { :controller => "ai_messages", :action => "create" })
           
