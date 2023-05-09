@@ -1,4 +1,6 @@
 class AiMessagesController < ApplicationController
+
+
   def index
     matching_ai_messages = AiMessage.all
 
@@ -23,8 +25,26 @@ class AiMessagesController < ApplicationController
     the_ai_message.content = params.fetch("query_content")
     the_ai_message.user_id = params.fetch("query_user_id")
 
+
     if the_ai_message.valid?
       the_ai_message.save
+
+    client = OpenAI::Client.new(access_toekn: ENV.fetch("CHAT_API"))
+    
+    response = client.chat(
+      parameters: {
+        model: "gpt-4",
+        messages: [{ role: "system", content: "You are a the best health and fitness expert. Take the following information about me and create a custom exercise plan.  Create a workout"}],
+        tempature: 1.0,
+      },
+    )
+
+    the_ai_message = AiMessage.new
+    the_ai_message.role = "assistant"
+    the_ai_message.content = response.choices[0].text.strip
+    the_ai_message.user_id = params.fetch("query_user_id")
+    the_ai_message.save
+
       redirect_to("/ai_messages", { :notice => "Ai message created successfully." })
     else
       redirect_to("/ai_messages", { :alert => the_ai_message.errors.full_messages.to_sentence })
