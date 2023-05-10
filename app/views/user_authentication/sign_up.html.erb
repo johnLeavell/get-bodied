@@ -1,4 +1,4 @@
-<h1>Sign up</h1>
+<%# <h1>Sign up</h1>
 
 <form action="/insert_user" method="post">
 
@@ -10,26 +10,47 @@
   <div>
     <%# <label for="ai_messages_count_box">Ai messages count</label> %>
       
-    <input type="hidden" id="ai_messages_count_box" name="query_ai_messages_count">
-  </div>
     
-  <div>
+
+    
+  <%# <div>
     <label for="password_box">Password</label>
     <input id="password_box" name="query_password" placeholder="Choose a password..." type="password">
-  </div>
+  </div> %>
 
-  <div>
+  <%# <div>
     <label for="password_confirmation_box">Password Confirmation</label>
     <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password">
+  </div> %>
+<div class="container-sm">
+<form>
+    <%# <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> %>
+    <h1 class="h3 mb-3 fw-normal">Sign up</h1>
+
+    <div class="form-floating">
+      <input type="email" class="form-control" id="email_box" name="query_email" placeholder="Choose a email...">
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control"  id="password_box" name="query_password" placeholder="Choose a password...">
+      <label for="floatingPassword">Password</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password...">
+      <label for="floatingPassword">Password Confirmation</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <input type="hidden" id="ai_messages_count_box" name="query_ai_messages_count">
+  </form>
   </div>
-
-  <button>
-    Sign up
-  </button>
-</form>
-
 <hr>
-
 <p>
   Or, <a href="/user_sign_in">Sign in</a> instead.
 </p>
+    <p class="mt-5 mb-3 text-body-secondary">Get Boided ©2023</p>
