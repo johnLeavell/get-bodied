@@ -28,11 +28,12 @@ class AiMessagesController < ApplicationController
 
       require "openai"
       # client = OpenAI::Client.new(access_token: ENV.fetch("CHAT_API"))
-      client = OpenAI::Client.new(access_token: ENV.fetch("CHAT_API"))
+      client = OpenAI::Client.new(access_token: ENV.fetch("CHAT_API"),
+      request_timeout: 240)
 
       response = client.chat(
         parameters: {
-          model: "gpt-4",
+          model: "gpt-3.5-turbo",
           messages: [
             { role: "system",
              content: @current_user.prompt },

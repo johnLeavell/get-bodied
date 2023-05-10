@@ -30,7 +30,7 @@
         Content
       </dt>
       <dd>
-        <%= @the_ai_message.content %>
+        <%= simple_format @the_ai_message.content %>
       </dd>
 
       <dt>
@@ -47,12 +47,12 @@
         <%= time_ago_in_words(@the_ai_message.created_at) %> ago
       </dd>
 
-      <dt>
+      <%# <dt>
         Updated at
       </dt>
       <dd>
-        <%= time_ago_in_words(@the_ai_message.updated_at) %> ago
-      </dd>
+        <%= time_ago_in_words(@the_ai_message.updated_at) %> 
+      <%# </dd> %> 
     </dl>
   </div>
 </div>

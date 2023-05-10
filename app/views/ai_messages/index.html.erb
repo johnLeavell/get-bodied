@@ -33,17 +33,17 @@
 </div>
 
 <hr>
-<div>
-  <div class="container">
-    <table border="1">
+<div class="container">
+  <div>
+    <table class="table table-bordered">
       <tr>
         <th>
           ID
         </th>
 
-        <th>
+        <%# <th>
           Role
-        </th>
+        </th> %>
 
         <th>
           Content
@@ -57,11 +57,8 @@
           Created at
         </th>
 
-        <%# <th>
-          Updated at
-        </th> %>
-
         <th>
+          More info
         </th>
       </tr>
 
@@ -73,12 +70,12 @@
           <%= an_ai_message.id %>
         </td>
 
-        <td>
+        <%# <td>
           <%= an_ai_message.role %>
-        </td>
+        <%# </td> %>
 
         <td>
-          <%= an_ai_message.content %>
+          <%= simple_format an_ai_message.content %>
         </td>
 
         <td>
