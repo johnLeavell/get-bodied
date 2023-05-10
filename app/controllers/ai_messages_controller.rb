@@ -1,6 +1,4 @@
 class AiMessagesController < ApplicationController
-
-
   def index
     matching_ai_messages = AiMessage.all
 
@@ -23,27 +21,39 @@ class AiMessagesController < ApplicationController
     the_ai_message = AiMessage.new
     the_ai_message.role = params.fetch("query_role")
     the_ai_message.content = params.fetch("query_content")
-    the_ai_message.user_id = params.fetch("query_user_id")
-
+    the_ai_message.user = @current_user
 
     if the_ai_message.valid?
       the_ai_message.save
 
-    client = OpenAI::Client.new(access_toekn: ENV.fetch("CHAT_API"))
-    
-    response = client.chat(
-      parameters: {
-        model: "gpt-4",
-        messages: [{ role: "system", content: "You are a the best health and fitness expert. Take the following information about me and create a custom exercise plan.  Create a workout"}],
-        tempature: 1.0,
-      },
-    )
+      require "openai"
+      # client = OpenAI::Client.new(access_token: ENV.fetch("CHAT_API"))
+      client = OpenAI::Client.new(access_token: ENV.fetch("CHAT_API"))
 
-    the_ai_message = AiMessage.new
-    the_ai_message.role = "assistant"
-    the_ai_message.content = response.choices[0].text.strip
-    the_ai_message.user_id = params.fetch("query_user_id")
-    the_ai_message.save
+      response = client.chat(
+        parameters: {
+          model: "gpt-4",
+          messages: [
+            { role: "system",
+             content: @current_user.prompt },
+            {
+              role: the_ai_message.role,
+              content: the_ai_message.content,
+            },
+
+          ],
+          temperature: 0.7,
+        },
+      )
+      # binding.pry
+      # debugger
+      # puts response
+      the_ai_message = AiMessage.new
+      message = response.dig("choices", 0, "message")
+      the_ai_message.role = message.dig("role")
+      the_ai_message.content = message.dig("content")
+      the_ai_message.user = @current_user
+      the_ai_message.save
 
       redirect_to("/ai_messages", { :notice => "Ai message created successfully." })
     else
@@ -61,7 +71,7 @@ class AiMessagesController < ApplicationController
 
     if the_ai_message.valid?
       the_ai_message.save
-      redirect_to("/ai_messages/#{the_ai_message.id}", { :notice => "Ai message updated successfully."} )
+      redirect_to("/ai_messages/#{the_ai_message.id}", { :notice => "Ai message updated successfully." })
     else
       redirect_to("/ai_messages/#{the_ai_message.id}", { :alert => the_ai_message.errors.full_messages.to_sentence })
     end
@@ -73,6 +83,6 @@ class AiMessagesController < ApplicationController
 
     the_ai_message.destroy
 
-    redirect_to("/ai_messages", { :notice => "Ai message deleted successfully."} )
+    redirect_to("/ai_messages", { :notice => "Ai message deleted successfully." })
   end
 end

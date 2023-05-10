@@ -17,4 +17,13 @@ class User < ApplicationRecord
   has_many(:user_workouts, { :class_name => "UserWorkout", :foreign_key => "user_id", :dependent => :destroy })
 
   has_many(:ai_messages, { :class_name => "AiMessage", :foreign_key => "user_id", :dependent => :destroy })
+
+  def prompt
+    <<~TEXT
+      You are the best health and fitness expert.
+      Take the following information about me and create a custom exercise plan based off my specifications.
+
+
+    TEXT
+  end
 end

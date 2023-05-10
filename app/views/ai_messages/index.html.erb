@@ -15,28 +15,14 @@
     </h2>
 
     <form action="/insert_ai_message" method="post">
-      <div>
-        <label for="role_box">
-          Role
-        </label>
-
-        <input type="text" id="role_box" name="query_role">
-      </div>
+      <input type="hidden" id="role_box" name="query_role" value="system">
 
       <div>
         <label for="content_box">
           Content
         </label>
 
-        <input type="text" id="content_box" name="query_content">
-      </div>
-
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
+        <textarea id="content_box" name="query_content" rows="4"></textarea>
       </div>
 
       <button>
@@ -78,6 +64,8 @@
         <th>
         </th>
       </tr>
+
+      <%= messages = @list_of_ai_messages.first.content.inspect %>
 
       <% @list_of_ai_messages.each do |an_ai_message| %>
       <tr>
