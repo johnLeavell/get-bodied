@@ -13,7 +13,7 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'sprockets', '< 4'
 gem 'sassc-rails'
 gem 'faker'
-
+gem 'openai', '~> 0.2.0'
 group :development do
   gem 'htmlbeautifier'
   gem 'listen', '~> 3.2'
