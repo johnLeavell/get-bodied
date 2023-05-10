@@ -46,7 +46,7 @@
         </th> %>
 
         <th>
-          Content
+          Workout
         </th>
 
         <th>
@@ -62,17 +62,11 @@
         </th>
       </tr>
 
-      <%# <%= messages = @list_of_ai_messages.first.content.inspect % %>
-
       <% @list_of_ai_messages.each do |an_ai_message| %>
       <tr>
         <td>
           <%= an_ai_message.id %>
         </td>
-
-        <%# <td>
-          <%= an_ai_message.role %>
-        <%# </td> %>
 
         <td>
           <%= simple_format an_ai_message.content %>
@@ -85,9 +79,6 @@
         <td>
           <%= time_ago_in_words(an_ai_message.created_at) %> ago
         </td>
-        <%# <td>
-          <%= time_ago_in_words(an_ai_message.updated_at) %> 
-        <%# </td> %> 
 
         <td>
           <a href="/ai_messages/<%= an_ai_message.id %>">
