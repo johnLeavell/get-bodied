@@ -1,12 +1,5 @@
-  <div>
-    <h1>
-      List of all ai messages
-    </h1>
-  </div>
-    
-    <hr>
 
-  <div>
+  <div class="container">
     <h2>
       What kind of wokrout do you want to do?
     </h2>
@@ -14,30 +7,25 @@
     <% if @current_user !=nil %>
     <form action="/insert_ai_message" method="post">
       <input type="hidden" id="role_box" name="query_role" value="system">
-      <div>
-        <label for="content_box">Content</label>
-        <textarea id="content_box" name="query_content" rows="4"></textarea>
+
+      <div class="form-floating">
+       <textarea class="form-control" id="content_box" name="query_content"></textarea>
       </div>
+
+
         <input type="hidden" id="owner_id_box" name="query_owner_id" value="<%= @current_user.id %>">
-      <button>
-        Create ai message
-      </button>
+      <button type="button" class="btn btn-primary">Get Bodied!</button>
     </form>
   </div>
 <% end %>
 
 <hr>
 <div class="container">
-  <div>
     <table class="table table-bordered">
       <tr>
         <th>
           ID
         </th>
-
-        <%# <th>
-          Role
-        </th> %>
 
         <th>
           Workout
@@ -82,7 +70,4 @@
         </tr>
       <% end %>
     </table>
-  </div>
 </div>
-
-<hr>

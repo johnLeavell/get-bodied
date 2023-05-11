@@ -13,31 +13,31 @@
 
       <div>
         <a href="/delete_ai_message/<%= @the_ai_message.id %>">
-          Delete ai message
+          Delete workout
         </a>
       </div>
     </div>
 
     <dl>
-      <dt>
+      <%# <dt>
         Role
-      </dt>
-      <dd>
+      </dt> %>
+      <%# <dd>
         <%= @the_ai_message.role %>
-      </dd>
+        <%# </dd> %> 
 
       <dt>
-        Content
+        Here's your workout <%=@the_ai_message.user.username%>
       </dt>
       <dd>
         <%= simple_format @the_ai_message.content %>
       </dd>
 
       <dt>
-        User
+        Created by
       </dt>
       <dd>
-        <%= @the_ai_message.user_id %>
+        <%= @the_ai_message.user.username %>
       </dd>
 
       <dt>
@@ -63,37 +63,29 @@
 <div>
   <div>
     <h2>
-      Edit ai message
+      Edit your wokrout
     </h2>
 
     <form action="/modify_ai_message/<%= @the_ai_message.id %>"  method="post" >
       <div>
-        <label for="role_box">
-          Role
-        </label>
-
-        <input type="text" id="role_box" name="query_role" value="<%= @the_ai_message.role %>">
+        <input type="hidden" id="role_box" name="query_role" value="<%= @the_ai_message.role %>">
       </div>
 
       <div>
-        <label for="content_box">
-          Content
-        </label>
-
         <input type="text" id="content_box" name="query_content" value="<%= @the_ai_message.content %>">
       </div>
+
 
       <div>
         <label for="user_id_box">
           User
         </label>
 
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_ai_message.user_id %>">
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_ai_message.user.username %>">
       </div>
 
-      <button>
-        Update ai message
-      </button>
+     <button type="button" class="btn btn-primary">Update your workout</button>
+
     </form>
   </div>
 </div>

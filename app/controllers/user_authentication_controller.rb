@@ -39,6 +39,7 @@ class UserAuthenticationController < ApplicationController
   def create
     @user = User.new
     @user.email = params.fetch("query_email")
+    @user.username = params.fetch("query_username")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
     @user.ai_messages_count = params.fetch("query_ai_messages_count")
