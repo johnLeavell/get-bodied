@@ -15,6 +15,8 @@ gem "sassc-rails"
 gem "faker"
 gem "ruby-openai", '~> 4.0'
 gem 'bootstrap', '~> 5.2.3'
+gem 'kaminari'
+gem 'ransack'
 
 group :development do
   gem "htmlbeautifier"

@@ -1,8 +1,8 @@
 class AiMessagesController < ApplicationController
   def index
-    matching_ai_messages = AiMessage.all
 
-    @list_of_ai_messages = matching_ai_messages.order({ :created_at => :desc })
+    @q = AiMessage.all.order({ :created_at => :desc }).ransack(params[:q])
+    @ai_messages = @q.result
 
     render({ :template => "ai_messages/index.html.erb" })
   end
@@ -27,7 +27,7 @@ class AiMessagesController < ApplicationController
       the_ai_message.save
 
       require "openai"
-      # client = OpenAI::Client.new(access_token: ENV.fetch("CHAT_API"))
+      
       client = OpenAI::Client.new(access_token: ENV.fetch("CHAT_API"),
       request_timeout: 240)
 
@@ -46,9 +46,7 @@ class AiMessagesController < ApplicationController
           temperature: 0.7,
         },
       )
-      # binding.pry
-      # debugger
-      # puts response
+
       the_ai_message = AiMessage.new
       message = response.dig("choices", 0, "message")
       the_ai_message.role = message.dig("role")
