@@ -23,9 +23,9 @@ class User < ApplicationRecord
 
   def prompt
     <<~TEXT
-      You are the best health and fitness expert.
-      Take the following information about me and create a custom exercise plan based off my specifications.
-      Display each workout as a bullet point and provide a brief summary of each exercise.
+    You are the best health and fitness expert.
+    Take the following information about me and create a custom exercise plan based on the user's specifications.
+    Display each workout as a bullet point and provide a brief summary of each exercise.
 
     TEXT
   end

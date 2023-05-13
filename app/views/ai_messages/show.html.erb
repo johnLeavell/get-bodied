@@ -1,93 +1,81 @@
-<div>
+<div class=container>
   <div>
-    <h1>
-      Ai message #<%= @the_ai_message.id %> details
-    </h1>
+    <a href="/ai_messages">
+      Go back
+    </a>
+  </div>
 
+  <div>
+    <a href="/delete_ai_message/<%= @the_ai_message.id %>">
+      Delete workout
+    </a>
+  </div>
+
+  <dl>
+    <dt>
+      Here's your workout <%=@the_ai_message.user.username%>
+    </dt>
+
+    <dd>
+      <%= simple_format @the_ai_message.content %>
+        <%= AiMessage.where({ :id => @the_ai_message}).order(:created_at).each do |mess| %>
+        
+        <dt><%= simple_format(mess.content) %></dt>
+
+        <% end %>
+    </dd>
+
+    <dt>
+      Created by
+    </dt>
+
+    <dd>
+      <%= @the_ai_message.user.username %>
+    </dd>
+
+    <dt>
+      Created at
+    </dt>
+
+    <dd>
+      <%= time_ago_in_words(@the_ai_message.created_at) %> ago
+    </dd>
+
+  </dl>
+</div>
+</div>
+
+<hr>
+
+<div class="container">
+  <h2>
+    Edit your wokrout
+  </h2>
+
+  <form action="/modify_ai_message/<%= @the_ai_message.id %>"  method="post" >
     <div>
-      <div>
-        <a href="/ai_messages">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_ai_message/<%= @the_ai_message.id %>">
-          Delete workout
-        </a>
-      </div>
+      <input type="hidden" id="role_box" name="query_role" value="<%= @the_ai_message.role %>">
     </div>
 
-    <dl>
-      <%# <dt>
-        Role
-      </dt> %>
-      <%# <dd>
-        <%= @the_ai_message.role %>
-        <%# </dd> %> 
+    <div>
+      <input type="text" id="content_box" name="query_content" value="<%= @the_ai_message.content %>" class="form-control" >
+    </div>
 
-      <dt>
-        Here's your workout <%=@the_ai_message.user.username%>
-      </dt>
-      <dd>
-        <%= simple_format @the_ai_message.content %>
-      </dd>
+    <div class="mb-3">
+      <label for="user_id_box" class="form-label">
+        User
+      </label>
 
-      <dt>
-        Created by
-      </dt>
-      <dd>
-        <%= @the_ai_message.user.username %>
-      </dd>
+      <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_ai_message.user.username %>" class="form-control">
+    </div>
+    <div class="form-floating mb-3">
+      <textarea style="height: 400px" class="form-control" aria-label="With textarea" id="message-content">
+          <%= @the_ai_message.content %>
+        </textarea>
+      <label for="message-content">Content</label>
+    </div>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_ai_message.created_at) %> ago
-      </dd>
+    <button type="button" class="btn btn-primary">Update your workout</button>
+  </form>
 
-      <%# <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_ai_message.updated_at) %> 
-      <%# </dd> %> 
-    </dl>
-  </div>
 </div>
-
-<hr>
-
-
-<div>
-  <div>
-    <h2>
-      Edit your wokrout
-    </h2>
-
-    <form action="/modify_ai_message/<%= @the_ai_message.id %>"  method="post" >
-      <div>
-        <input type="hidden" id="role_box" name="query_role" value="<%= @the_ai_message.role %>">
-      </div>
-
-      <div>
-        <input type="text" id="content_box" name="query_content" value="<%= @the_ai_message.content %>">
-      </div>
-
-
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_ai_message.user.username %>">
-      </div>
-
-     <button type="button" class="btn btn-primary">Update your workout</button>
-
-    </form>
-  </div>
-</div>
-
-<hr>

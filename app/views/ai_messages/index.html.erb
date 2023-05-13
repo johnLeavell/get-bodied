@@ -13,8 +13,8 @@
       </div>
 
 
-        <input type="hidden" id="owner_id_box" name="query_owner_id" value="<%= @current_user.id %>">
-      <button type="button" class="btn btn-primary">Get Bodied!</button>
+        <input type="hidden" id="owner_id_box" name="query_owner_id" value="<%= @current_user.id%>">
+      <button class="btn btn-primary">Get Bodied!</button>
     </form>
   </div>
 <% end %>
@@ -23,10 +23,6 @@
 <div class="container">
     <table class="table table-bordered">
       <tr>
-        <th>
-          ID
-        </th>
-
         <th>
           Workout
         </th>
@@ -42,20 +38,21 @@
         <th>
           More info
         </th>
-      </tr>
 
+        <th>
+          Add to your wokrouts
+        </th>
+
+      </tr>
+      <%# # the logged in user == the session user display the users workouts  %>
       <% @ai_messages.each do |an_ai_message| %>
         <tr>
-          <td>
-            <%= an_ai_message.id %>
-          </td>
-
           <td>
             <%= simple_format an_ai_message.content %>
           </td>
 
           <td>
-            <%= an_ai_message.user_id %>
+            <%= an_ai_message.user.username %>
           </td>
 
           <td>
@@ -67,6 +64,7 @@
               Show details
             </a>
           </td>
+         
         </tr>
       <% end %>
     </table>

@@ -31,6 +31,8 @@ class AiMessagesController < ApplicationController
       client = OpenAI::Client.new(access_token: ENV.fetch("CHAT_API"),
       request_timeout: 240)
 
+
+
       response = client.chat(
         parameters: {
           model: "gpt-3.5-turbo",
@@ -46,6 +48,10 @@ class AiMessagesController < ApplicationController
           temperature: 0.7,
         },
       )
+      # the_ai_user_messages = the_ai_message.map { |m| {role: m.role, content: m.content}}
+      # user_messages = User.find_by_id(@current_user)
+      #<AiMessagesController>)> user = User.find_by(@current_user_id)
+        #user_messages = user.ai_messages.map { |m| { role: m.role, content: m.content}}
 
       the_ai_message = AiMessage.new
       message = response.dig("choices", 0, "message")
@@ -53,6 +59,7 @@ class AiMessagesController < ApplicationController
       the_ai_message.content = message.dig("content")
       the_ai_message.user = @current_user
       the_ai_message.save
+
 
       redirect_to("/ai_messages", { :notice => "Ai message created successfully." })
     else
