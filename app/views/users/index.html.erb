@@ -1,27 +1,17 @@
 <div class="container mt-4 border">
   <div class="container-content">
-    <h1 class="m-3">Welcome to Get Bodied</h1>
+    <h1 class="m-3">Welcome <%= @the_user.username %></h1>
     <div class="m-3">
-
-      <h2>Features</h2>
     </h2>
     <span>
       <ul>
-        <li>Create a workout! <a href="/ai_messages">select</a></li>
+       <a href="/ai_messages">Create a workout!</a>
       </ul>
     </span>
   </div>
 </div>
-</div>
-<h1>Welcome <%= @the_user.username%></h1>
 
-<h3>Lets take a look at your workouts 🦾</h3>
-
-<dl>
-  <dt>You have <%= @the_user.ai_messages_count %> Workouts</dt>
-</dl>
-
-<table class="table table-bordered">
+<table class="table table-bordered mb-3">
   <tr>
     <th>
       Workout
@@ -35,6 +25,7 @@
       More info
     </th>
   </tr>
+
   <tr>
     <td>
       <%= simple_format(@user_workouts.content) %>
@@ -49,10 +40,5 @@
         Show details
       </a>
     </td>
-    <td>
-
-    </td>
-
   </tr>
-
 </table>
