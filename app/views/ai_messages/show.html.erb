@@ -17,17 +17,10 @@
     </dt>
 
     <dd>
-      <%= simple_format @the_ai_message.content %>
-        <%= AiMessage.where({ :id => @the_ai_message}).order(:created_at).each do |mess| %>
-        
-        <dt><%= simple_format(mess.content) %></dt>
-
-        <% end %>
+      <%= AiMessage.where({ :id => @the_ai_message}).order(:created_at).each do |message| %>
+        <dt><%= simple_format(@the_ai_message.content) %></dt>
+      <%end%>
     </dd>
-
-    <dt>
-      Created by
-    </dt>
 
     <dd>
       <%= @the_ai_message.user.username %>
@@ -42,9 +35,8 @@
     </dd>
 
   </dl>
-</div>
-</div>
 
+</div>
 <hr>
 
 <div class="container">
@@ -57,17 +49,6 @@
       <input type="hidden" id="role_box" name="query_role" value="<%= @the_ai_message.role %>">
     </div>
 
-    <div>
-      <input type="text" id="content_box" name="query_content" value="<%= @the_ai_message.content %>" class="form-control" >
-    </div>
-
-    <div class="mb-3">
-      <label for="user_id_box" class="form-label">
-        User
-      </label>
-
-      <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_ai_message.user.username %>" class="form-control">
-    </div>
     <div class="form-floating mb-3">
       <textarea style="height: 400px" class="form-control" aria-label="With textarea" id="message-content">
           <%= @the_ai_message.content %>

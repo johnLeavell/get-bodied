@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
+# user routes
 
+get("/users/:path_id", :controller => "users", :action => "index") 
 
   # Routes for the Ai message resource:
   get("/", { controller: "welcome", action: "index" })
