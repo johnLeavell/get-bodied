@@ -2,7 +2,8 @@ databases:
   - name: getbodied
     databaseName: getbodied
     user: getbodied
-
+    plan: free
+    
 services:
   - type: web
     name: getbodied
