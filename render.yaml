@@ -1,7 +1,7 @@
 databases:
   - name: getbodied
     databaseName: getbodied
-    user: johnLeavell
+    user: getbodied
 
 services:
   - type: web
