@@ -1,11 +1,12 @@
 databases:
-  - name: mysite
-    databaseName: mysite
-    user: mysite
+  - name: getbodied
+    databaseName: getbodied
+    user: johnLeavell
 
 services:
   - type: web
-    name: mysite
+    name: getbodied
+    plan: free
     env: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
