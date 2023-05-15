@@ -12,16 +12,12 @@
  *
  *= require_self
 
+/*  */
 
-.main-messages {
-  margin-top: 50px;
+body {
+  background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
   
 }
-
-.navigation{
-  background: radial-gradient(circle at 10% 20%, rgb(255, 200, 124) 0%, rgb(252, 251, 121) 90%);
+p {
+  color: white
 }
-/* 
-.table-bg {
-  background: #886AEA
-} */
