@@ -11,14 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_self
- */
-body {
-  background-image:  radial-gradient(circle at 52.1% -29.6%, rgb(144, 17, 105) 0%, rgb(51, 0, 131) 100.2% );
-  background-repeat: repeat;
-  /* background-image: url(https://tinyurl.com/5n7s7zu4) */
-  /* background-repeat: no-repeat; */
 
-}
 
 .main-messages {
   margin-top: 50px;

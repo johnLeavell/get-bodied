@@ -27,4 +27,8 @@ class User < ApplicationRecord
       Display each workout as a bullet point and provide a brief summary of each exercise.
     TEXT
   end
+
+  def api_messages_array
+    ai_messages.map { |m| { role: m.role, content: m.content } }.prepend({ role: "system", content: prompt })
+  end
 end

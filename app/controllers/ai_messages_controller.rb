@@ -19,47 +19,31 @@ class AiMessagesController < ApplicationController
   end
 
   def create
-    the_ai_message = AiMessage.new(
-      role: params.fetch("query_role"),
+    the_ai_message = @current_user.ai_messages.create(
       content: params.fetch("query_content"),
-      user_id: @current_user.id,
     )
 
-    if the_ai_message.valid?
-      the_ai_message.save
-      
+    if the_ai_message.persisted?
       client = OpenAI::Client.new(access_token: ENV.fetch("CHAT_API"), request_timeout: 240)
 
-      api_messages_array = AiMessage.where(user_id: the_ai_message.user_id).map do |the_message|
-        { role: the_message.role, content: the_message.content }
-      end
       # binding.pry
 
       response = client.chat(
         parameters: {
           model: "gpt-3.5-turbo",
-          messages: [
-            { role: "system",
-              content: @current_user.prompt },
-            {
-              role: "assistant",
-              content: the_ai_message.content,
-            },
-          ] + api_messages_array,
+          messages: @current_user.api_messages_array,
           temperature: 0.7,
         },
       )
 
-      the_ai_message = AiMessage.new
-      the_ai_message.role = "system"
-      the_ai_message.content = response.choices[0].text.strip
-      the_ai_message.user = @current_user
+      new_ai_message_params = response.dig("choices", 0, "message")
+      # TODO: throw error if new_ai_message_params.nil?
+      @current_user.ai_messages.create(new_ai_message_params)
 
-       the_ai_message.save
-        redirect_to("/users/#{@current_user.id}", { :notice => "AI message created successfully." })
-      else
-        redirect_to("/ai_messages", { :alert => the_ai_message.errors.full_messages.to_sentence })
-      end
+      redirect_to("/users/#{@current_user.id}", { :notice => "AI message created successfully." })
+    else
+      redirect_to("/ai_messages", { :alert => the_ai_message.errors.full_messages.to_sentence })
+    end
   end
 
   def update
