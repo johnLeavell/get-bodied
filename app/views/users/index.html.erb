@@ -1,58 +1,45 @@
 <div class="container mt-4 border">
   <div class="container-content">
-    <h1 class="m-3">Welcome to Get Bodied</h1>
+    <h1 class="m-3">Welcome <%= @the_user.username %></h1>
     <div class="m-3">
-
-      <h2>Features</h2>
-    </h2>
-    <span>
       <ul>
-        <li>Create a workout! <a href="/ai_messages">select</a></li>
+        <li><a href="/ai_messages">Create a workout!</a></li>
       </ul>
-    </span>
+    </div>
   </div>
 </div>
-</div>
-<h1>Welcome <%= @the_user.username%></h1>
 
-<h3>Lets take a look at your workouts 🦾</h3>
-
-<dl>
-  <dt>You have <%= @the_user.ai_messages_count %> Workouts</dt>
-</dl>
-
-<table class="table table-bordered">
+<div>
+<table class="table table-bordered mb-3">
   <tr>
-    <th>
+    <th scope="col">
       Workout
     </th>
 
-    <th>
+    <th scope="col">
       Created at
     </th>
 
-    <th>
+    <th scope="col">
       More info
     </th>
   </tr>
-  <tr>
-    <td>
-      <%= simple_format(@user_workouts.content) %>
-    </td>
 
-    <td>
-      <%= time_ago_in_words(@user_workouts.created_at) %> ago
-    </td>
+  <% @user_workouts.each do |workout| %>
+    <tr>  
+      <td>
+        <%= simple_format(workout.content) %>
+      </td>
 
-    <td>
-      <a href="/ai_messages/<%= @user_workouts.id %>">
-        Show details
-      </a>
-    </td>
-    <td>
+      <td>
+        <%= time_ago_in_words(workout.created_at) %> ago
+      </td>
 
-    </td>
-
-  </tr>
-
+      <td>
+        <a href="/ai_messages/<%= workout.id %>">
+          Show details
+        </a>
+      </td>
+    </tr>
+  <% end %>
 </table>

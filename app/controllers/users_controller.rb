@@ -6,8 +6,11 @@ class UsersController < ApplicationController
     matching_user = User.where({ :id => path_user })
     @the_user = matching_user.first
 
-    @user_workouts = AiMessage.where({ :id => @the_user.id}).first
-# binding.pry
+    @user_workouts = @the_user.ai_messages
+
     render template: "users/index.html.erb"
   end
 end
+
+
+

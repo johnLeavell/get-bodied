@@ -17,6 +17,7 @@ gem "ruby-openai", '~> 4.0'
 gem 'bootstrap', '~> 5.2.3'
 gem 'kaminari'
 gem 'ransack'
+gem 'dotenv', '~> 2.8', '>= 2.8.1'
 
 group :development do
   gem "htmlbeautifier"
