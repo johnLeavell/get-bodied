@@ -1,70 +1,18 @@
-
-  <div class="container">
-    <h2>
-      What kind of wokrout do you want to do?
-    </h2>
-    
-    <% if @current_user !=nil %>
+<div class="container">
+  <h2>
+    What kind of workout would you like to do?
+  </h2>
+  
+  <% if @current_user !=nil %>
+  <div class="main-messages">
     <form action="/insert_ai_message" method="post">
-      <input type="hidden" id="role_box" name="query_role" value="system">
-
-      <div class="form-floating">
-       <textarea class="form-control" id="content_box" name="query_content"></textarea>
+      <input type="hidden" id="role_box" name="query_role">
+      <div class="form-floating mb-3">
+        <textarea  class="form-control" id="content_box" name="query_content"></textarea>
       </div>
-
-
-        <input type="hidden" id="owner_id_box" name="query_owner_id" value="<%= @current_user.id%>">
+      <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @current_user.id %>">
       <button class="btn btn-primary">Get Bodied!</button>
     </form>
+  <% end %>
   </div>
-<% end %>
-
-<hr>
-<div class="container">
-    <table class="table table-bordered">
-      <tr>
-        <th>
-          Workout
-        </th>
-
-        <th>
-          User
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          More info
-        </th>
-
-        <th>
-          Add to your wokrouts
-        </th>
-
-      </tr>
-      <%# # the logged in user == the session user display the users workouts  %>
-      <% @ai_messages.each do |an_ai_message| %>
-        <tr>
-          <td>
-            <%= simple_format an_ai_message.content %>
-          </td>
-
-          <td>
-            <%= an_ai_message.user.username %>
-          </td>
-
-          <td>
-            <%= time_ago_in_words(an_ai_message.created_at) %> ago
-          </td>
-
-          <td>
-            <a href="/ai_messages/<%= an_ai_message.id %>">
-            </a>
-          </td>
-         
-        </tr>
-      <% end %>
-    </table>
 </div>

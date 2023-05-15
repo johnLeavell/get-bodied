@@ -1,6 +1,6 @@
 <div class=container>
   <div>
-    <a href="/ai_messages">
+    <a href="/users/<%= @current_user.id%>">
       Go back
     </a>
   </div>
@@ -17,13 +17,9 @@
     </dt>
 
     <dd>
-      <%= AiMessage.where({ :id => @the_ai_message}).order(:created_at).each do |message| %>
-        <dt><%= simple_format(@the_ai_message.content) %></dt>
+      <% AiMessage.where({ :id => @the_ai_message}).order(:created_at).each do |message| %>
+        <dt><%= simple_format(message.content) %></dt>
       <%end%>
-    </dd>
-
-    <dd>
-      <%= @the_ai_message.user.username %>
     </dd>
 
     <dt>

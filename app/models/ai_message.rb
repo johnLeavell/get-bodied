@@ -10,5 +10,5 @@
 #  user_id    :integer
 #
 class AiMessage < ApplicationRecord
-  belongs_to(:user, { :required => true, :class_name => "User", :foreign_key => "user_id", :counter_cache => true })
+  belongs_to :user, required: true, class_name: "User", foreign_key: "user_id", counter_cache: true
 end
