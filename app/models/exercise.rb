@@ -9,5 +9,5 @@
 #  updated_at  :datetime         not null
 #
 class Exercise < ApplicationRecord
-  has_many :workout_exercises, class_name: "WorkoutExercise", foreign_key: "exercise_id", dependent: :destroy
+  has_many :workout_exercises, class_name: 'WorkoutExercise', dependent: :destroy
 end

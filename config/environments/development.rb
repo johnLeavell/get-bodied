@@ -1,12 +1,10 @@
 Rails.application.configure do
   config.hosts.clear
-  path = Rails.root.join("whitelist.yml")
-  default_whitelist_path = Rails.root.join("default_whitelist.yml")
+  path = Rails.root.join('whitelist.yml')
+  default_whitelist_path = Rails.root.join('default_whitelist.yml')
   whitelisted_ips = []
 
-  if File.exist?(path)
-    whitelisted_ips = YAML.load_file(path)
-  end
+  whitelisted_ips = YAML.load_file(path) if File.exist?(path)
 
   if File.exist?(default_whitelist_path)
     whitelisted_ips = whitelisted_ips.concat(YAML.load_file(default_whitelist_path))
@@ -18,7 +16,7 @@ Rails.application.configure do
   config.web_console.whitelisted_ips = '0.0.0.0/0.0.0.0'
   BetterErrors::Middleware.allow_ip! '0.0.0.0/0.0.0.0'
 
-  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

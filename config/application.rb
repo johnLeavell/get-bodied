@@ -1,18 +1,18 @@
 require_relative 'boot'
 
-require "rails"
+require 'rails'
 # Pick the frameworks you want:
-require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
-require "active_storage/engine"
-require "action_controller/railtie"
-require "action_mailer/railtie"
+require 'active_model/railtie'
+require 'active_job/railtie'
+require 'active_record/railtie'
+require 'active_storage/engine'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
 # require "action_mailbox/engine"
 # require "action_text/engine"
-require "action_view/railtie"
+require 'action_view/railtie'
 # require "action_cable/engine"
-require "sprockets/railtie"
+require 'sprockets/railtie'
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -31,7 +31,7 @@ module FinalProject
       g.javascripts     false
       g.helper          false
     end
-    
+
     config.action_controller.default_protect_from_forgery = false
     config.active_record.belongs_to_required_by_default = false
 
@@ -46,7 +46,7 @@ module FinalProject
     Rails.application.config.middleware.insert_after(
       ActionDispatch::Static,
       ActionDispatch::Static,
-      Rails.root.join("docs").to_s,
+      Rails.root.join('docs').to_s,
       index: config.public_file_server.index_name,
       headers: config.public_file_server.headers || {}
     )
