@@ -1,36 +1,38 @@
-<div >
-  <h5>
-    Edit User Account
-  </h5>
+<div class="container mt-4">
+  <h5 class="text-center">Edit User Account</h5>
 
-  <div>
-    <form action="/modify_user" method="post">
-      <div>
-        <label for="email_box">Email</label>
-        <input id="email_box" name="query_email" value="<%= @current_user.email %>">
-      </div>
-      <div>
-        <label for="username">Username</label>
-        <input id="username" name="query_username" value="<%= @current_user.username%>">
-      </div>
-      <div>
-        <label for="ai_messages_count_box">Ai messages count</label>
-        <input id="ai_messages_count_box" name="query_ai_messages_count" value="<%= @current_user.ai_messages_count %>">
-      </div>
+  <div class="row justify-content-center">
+    <div class="col-xs-8 col-sm-6 col-md-4">
+      <form action="/modify_user" method="post">
+        <div class="form-group mb-3">
+          <input class="form-control form-control-sm" id="email_box" name="query_email" value="<%= @current_user.email %>" placeholder="Email" required>
+          <label for="email_box">Email</label>
+        </div>
 
-      <div>
-        <label for="password_box">Password</label>
-        <input id="password_box" name="query_password" placeholder="Choose a password..." type="password">
-      </div>
-    
-      <div>
-        <label for="password_confirmation_box">Password Confirmation</label>
-        <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password">
-      </div>
+        <div class="form-group mb-3">
+          <input class="form-control form-control-sm" id="username" name="query_username" value="<%= @current_user.username%>" placeholder="Username" required>
+          <label for="username">Username</label>
+        </div>
 
-      <button>
-        Update account
-      </button>
-    </form>
+        <div class="form-group mb-3">
+          <input class="form-control form-control-sm" id="ai_messages_count_box" name="query_ai_messages_count" value="<%= @current_user.ai_messages_count %>" placeholder="Workout count" required>
+          <label for="ai_messages_count_box">Workout count</label>
+        </div>
+
+        <div class="form-group mb-3">
+          <input class="form-control form-control-sm" id="password_box" name="query_password" placeholder="Choose a password..." type="password" required>
+          <label for="password_box">Password</label>
+        </div>
+
+        <div class="form-group mb-3">
+          <input class="form-control form-control-sm" id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password" required>
+          <label for="password_confirmation_box">Confirm Password</label>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-lg btn-dark">Update account</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
