@@ -28,6 +28,6 @@ class User < ApplicationRecord
   end
 
   def api_messages_array
-    ai_messages.map { |m| { role: m.role, content: the_message.content } }.prepend({ role: "system", content: prompt })
+    ai_messages.map { |m| { role: m.role, content: m.content } }.prepend({ role: "system", content: prompt })
   end
 end
