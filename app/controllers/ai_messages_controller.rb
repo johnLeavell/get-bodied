@@ -3,7 +3,7 @@ class AiMessagesController < ApplicationController
 
   def index
     @q = AiMessage.all.order({ :created_at => :desc }).ransack(params[:q])
-    @ai_messages = @q.result
+    @ai_messages = @q.result.page(params[:page]).per(7)
 
     render({ :template => "ai_messages/index.html.erb" })
   end

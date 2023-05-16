@@ -1,26 +1,58 @@
 <div class="container mt-4 border">
   <div class="container-content">
     <h1 class="m-3">Welcome <%= @the_user.username %></h1>
-   <div class="container">
-  <h2>What kind of workout would you like to do?</h2>
-  
-  <% if @current_user.present? %>
-  <div class="main-messages">
-    <form action="/insert_ai_message" method="post">
-      <input type="hidden" id="role_box" name="query_role">
-      <div class="form-group">
-        <textarea class="form-control mb-3" id="content_box" name="query_content" rows="3"></textarea>
+    <div class="container">
+      <h2>What kind of workout would you like to do?</h2>
+      
+      <% if @current_user.present? %>
+      <div class="main-messages">
+        <form action="/insert_ai_message" method="post">
+          <input type="hidden" id="role_box" name="query_role">
+          <div class="form-group">
+            <textarea class="form-control mb-3" id="content_box" name="query_content" rows="3"></textarea>
+          </div>
+          <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @current_user.id %>">
+          <button type="submit" class="btn btn-dark">Get Bodied!</button>
+        </form>
       </div>
-      <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @current_user.id %>">
-      <button type="submit" class="btn btn-dark">Get Bodied!</button>
-    </form>
-  </div>
-  <% end %>
-</div>
+      <% end %>
+    </div>
   </div>
 </div>
 
 <div class="table-responsive mt-4">
+  <div class="col-auto">  
+  <nav>
+    <ul class="pagination">
+      <% if @user_workouts.total_pages > 1 %>
+        <% if @user_workouts.prev_page %>
+          <li class="page-item">
+            <a class="page-link" href="<%= url_for(page: @user_workouts.prev_page) %>">« Previous</a>
+          </li>
+        <% end %>
+      
+        <% @user_workouts.total_pages.times do |page| %>
+          <% if @user_workouts.current_page == page + 1 %>
+            <li class="page-item active">
+              <a class="page-link" href="<%= url_for(page: page + 1) %>"><%= page + 1 %></a>
+            </li>
+          <% else %>
+            <li class="page-item">
+              <a class="page-link" href="<%= url_for(page: page + 1) %>"><%= page + 1 %></a>
+            </li>
+          <% end %>
+        <% end %>
+      
+        <% if @user_workouts.next_page %>
+          <li class="page-item">
+            <a class="page-link" href="<%= url_for(page: @user_workouts.next_page) %>">Next »</a>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </nav>
+</div>
+
   <table class="table table-bordered">
     <thead class="table-dark">
       <tr>
@@ -39,4 +71,37 @@
       <% end %>
     </tbody>
   </table>
+
+
+ <div class="col-auto">  
+  <nav>
+    <ul class="pagination">
+      <% if @user_workouts.total_pages > 1 %>
+        <% if @user_workouts.prev_page %>
+          <li class="page-item">
+            <a class="page-link" href="<%= url_for(page: @user_workouts.prev_page) %>">« Previous</a>
+          </li>
+        <% end %>
+      
+        <% @user_workouts.total_pages.times do |page| %>
+          <% if @user_workouts.current_page == page + 1 %>
+            <li class="page-item active">
+              <a class="page-link" href="<%= url_for(page: page + 1) %>"><%= page + 1 %></a>
+            </li>
+          <% else %>
+            <li class="page-item">
+              <a class="page-link" href="<%= url_for(page: page + 1) %>"><%= page + 1 %></a>
+            </li>
+          <% end %>
+        <% end %>
+      
+        <% if @user_workouts.next_page %>
+          <li class="page-item">
+            <a class="page-link" href="<%= url_for(page: @user_workouts.next_page) %>">Next »</a>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </nav>
+</div>
 </div>

@@ -6,11 +6,11 @@ class UsersController < ApplicationController
     matching_user = User.where({ :id => path_user })
     @the_user = matching_user.first
 
-    @user_workouts = @the_user.ai_messages
+
+
+    @q = @the_user.ai_messages.all.order({ :created_at => :desc }).ransack(params[:q])
+    @user_workouts = @q.result.page(params[:page]).per(10)
 
     render template: "users/index.html.erb"
   end
 end
-
-
-
