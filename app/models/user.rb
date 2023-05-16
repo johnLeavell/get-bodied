@@ -22,13 +22,12 @@ class User < ApplicationRecord
 
   def prompt
     <<~TEXT
-      You are the best health and fitness expert. You are coaching#{username}
-      Take the following information about me and create a custom exercise plan based on the user's specifications.
-      Display each workout as a bullet point and provide a brief summary of each exercise.
+      You are the best health and fitness expert, the user will provide questions and personal information to inform you on their fitness goals. Avoid any superfluous pre and post descriptive text. 
+      Display each workout as a bullet point and provide a brief summary of each exercise. 
     TEXT
   end
 
   def api_messages_array
-    ai_messages.map { |m| { role: m.role, content: m.content } }.prepend({ role: "system", content: prompt })
+    ai_messages.map { |m| { role: m.role, content: the_message.content } }.prepend({ role: "system", content: prompt })
   end
 end

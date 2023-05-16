@@ -3,7 +3,7 @@
     <h1 class="m-3">Welcome <%= @the_user.username %></h1>
     <div class="m-3">
       <ul>
-        <li><a href="/ai_messages">Create a workout!</a></li>
+        <li><a class="text-white" href="/ai_messages">Create a workout!</a></li>
       </ul>
     </div>
   </div>
@@ -36,7 +36,7 @@
       </td>
 
       <td>
-        <a href="/ai_messages/<%= workout.id %>">
+        <a class="text-white" href="/ai_messages/<%= workout.id %>">
           Show details
         </a>
       </td>

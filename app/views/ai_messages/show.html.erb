@@ -1,12 +1,12 @@
 <div class=container>
   <div>
-    <a href="/users/<%= @current_user.id%>">
+    <a class="text-white" href="/users/<%= @current_user.id%>">
       Go back
     </a>
   </div>
 
   <div>
-    <a href="/delete_ai_message/<%= @the_ai_message.id %>">
+    <a class="text-white" ref="/delete_ai_message/<%= @the_ai_message.id %>">
       Delete workout
     </a>
   </div>
@@ -52,7 +52,7 @@
       <label for="message-content">Content</label>
     </div>
 
-    <button type="button" class="btn btn-primary">Update your workout</button>
+    <button type="button" class="btn btn-dark">Update your workout</button>
   </form>
 
 </div>
