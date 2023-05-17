@@ -1,6 +1,6 @@
-<div class=container>
+<div class="container">
   <div>
-    <a class="text-white" href="/users/<%= @current_user.id%>">
+    <a class="text-white" href="/users/<%= @current_user.id %>">
       Go back
     </a>
   </div>
@@ -13,13 +13,13 @@
 
   <dl>
     <dt>
-      Here's your workout <%=@the_ai_message.user.username%>
+      Here's your workout <%= @the_ai_message.user.username %>
     </dt>
 
     <dd>
       <% AiMessage.where({ :id => @the_ai_message}).order(:created_at).each do |message| %>
         <dt><%= simple_format(message.content) %></dt>
-      <%end%>
+      <% end %>
     </dd>
 
     <dt>
@@ -29,30 +29,28 @@
     <dd>
       <%= time_ago_in_words(@the_ai_message.created_at) %> ago
     </dd>
-
   </dl>
-
 </div>
 <hr>
 
 <div class="container">
   <h2>
-    Edit your wokrout
+    Edit your workout
   </h2>
 
-  <form action="/modify_ai_message/<%= @the_ai_message.id %>"  method="post" >
+  <form action="/modify_ai_message/<%= @the_ai_message.id %>" method="post">
     <div>
       <input type="hidden" id="role_box" name="query_role" value="<%= @the_ai_message.role %>">
+      <input type="hidden" id="id_box" name="query_user_id" value="<%= @current_user.id %>" >
     </div>
 
     <div class="form-floating mb-3">
-      <textarea style="height: 400px" class="form-control" aria-label="With textarea" id="message-content">
-          <%= @the_ai_message.content %>
-        </textarea>
+      <textarea style="height: 400px" class="form-control" aria-label="With textarea" id="message-content" name="query_content">
+        <%= @the_ai_message.content %>
+      </textarea>
       <label for="message-content">Content</label>
     </div>
 
-    <button type="button" class="btn btn-dark">Update your workout</button>
+    <button type="submit" class="btn btn-dark">Update your workout</button>
   </form>
-
 </div>
