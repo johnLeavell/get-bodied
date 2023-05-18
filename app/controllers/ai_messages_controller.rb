@@ -30,7 +30,7 @@ class AiMessagesController < ApplicationController
 
       response = client.chat(
         parameters: {
-          model: 'gpt-3.5-turbo',
+          model: 'gpt-4',
           messages: @current_user.api_messages_array,
           temperature: 0.7
         }

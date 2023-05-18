@@ -20,6 +20,7 @@ gem 'rubocop-rails', require: false
 gem 'ruby-openai', '~> 4.0'
 gem 'sassc-rails'
 gem 'sprockets', '< 4'
+gem 'turbolinks'
 
 group :development do
   gem 'htmlbeautifier'
