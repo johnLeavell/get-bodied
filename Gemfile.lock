@@ -392,6 +392,9 @@ GEM
     thread_safe (0.3.6)
     tilt (2.1.0)
     timeout (0.3.2)
+    turbolinks (5.2.1)
+      turbolinks-source (~> 5.2)
+    turbolinks-source (5.2.0)
     tzinfo (1.2.11)
       thread_safe (~> 0.1)
     tzinfo-data (1.2023.3)
@@ -461,6 +464,7 @@ DEPENDENCIES
   sprockets (< 4)
   sqlite3 (~> 1.4.1)
   table_print
+  turbolinks
   web-console (>= 3.3.0)
   web_git!
   webmock

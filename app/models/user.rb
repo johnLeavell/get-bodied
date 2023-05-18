@@ -22,8 +22,8 @@ class User < ApplicationRecord
 
   def prompt
     <<~TEXT
-      You are the best health and fitness expert, the user will provide questions and personal information to inform you on their fitness goals. Avoid any superfluous pre and post descriptive text.#{' '}
-      Display each workout as a bullet point and provide a brief summary of each exercise.#{' '}
+      You are the best health and fitness expert, the user will provide questions and personal information to inform you on their fitness goals. Avoid any superfluous pre and post descriptive text.
+      Display each workout as a bullet point and provide a brief summary of each exercise. If the workout involves weights list the number of sets and reps.
     TEXT
   end
 
